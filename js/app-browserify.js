@@ -3,6 +3,8 @@ require("babel/polyfill")
 
 let fetch = require('./fetcher')
 
+var React = require("react")
+
 // other stuff that we don't really use in our own code
 // var Pace = require("../bower_components/pace/pace.js")
 
@@ -15,4 +17,63 @@ let fetch = require('./fetcher')
     // start app
     // new Router()
 // }
+
+var TimeTravel = React.createClass({
+
+	getInitialState: function() {
+		return {year: 2015,
+				flux: false,
+			}
+	},
+
+	forward: function() {
+			this.setState({
+				year: this.state.year + 1,
+				flux: true
+			})
+		},
+
+	stop: function() {
+		clearInterval(this.move)
+		this.setState({flux: false})
+	},
+
+	backward: function() {
+			this.setState({
+				year: this.state.year - 1,
+				flux: true
+			})
+		},
+
+	backwardClick: function() {
+			console.log("clicked!")
+		if(!this.state.flux) {
+			this.move = setInterval(this.backward, 1000)
+		}
+	}, 
+
+	forwardClick: function() {
+			console.log("clicked!")
+		if(!this.state.flux) {
+			this.move = setInterval(this.forward, 1000)
+		}
+	}, 
+
+	render: function() {
+		return(
+			<div>
+				<p>The year is: <span id="year">{this.state.year}</span></p>
+				<button id="back" onClick={this.backwardClick}>Back!</button>
+				<button id="stop" onClick={this.stop}>Stop</button>
+				<button id="forward" onClick={this.forwardClick}>To the Future!</button>
+			</div>
+		)
+	},
+
+})
+React.render(<TimeTravel/>, document.getElementById("readoutContainer"))
+
+
+
+
 

@@ -73,3 +73,54 @@ img {
  * YOUR CODE HERE
  */
 
+body {
+    background-image: url("http://img11.deviantart.net/abbe/i/2011/001/7/d/flux_capacitor___wallpaper_by_excursioner1-d36792h.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#container{ 
+    width:450px;
+    height: 500px;
+    padding: 1rem;
+}
+
+h1 {
+    text-align: center;
+    font-family: Orbitron;
+    color: white;
+}
+
+#readoutContainer {
+    height: 300px;
+    width: 400px;
+}
+
+p {
+    margin-bottom: 0;
+    font-family: Orbitron;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+
+#year {
+    display: block;
+    font-family: Digital-7;
+    color: #FFD119;
+    font-size: 80px;
+    margin-top: -1rem;
+}
+
+button {
+    margin: 1.5rem;
+    background: none;
+    font-family: Digital-7;
+    color: #FFD119;
+    border-radius: 50%;
+    font-size: 19px;
+}
+
+
+
+
