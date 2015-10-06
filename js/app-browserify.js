@@ -26,16 +26,29 @@ var TimeTravel = React.createClass({
 			}
 	},
 
+	backwardClick: function() {
+			console.log("clicked!")
+		if(!this.state.flux) {
+			this.backward()
+		}
+	}, 
+
+	forwardClick: function() {
+			console.log("clicked!")
+		if(!this.state.flux) {
+			this.forward()
+		}
+	}, 
+
+	start: 1000,
+
 	forward: function() {
 			this.setState({
 				year: this.state.year + 1,
 				flux: true
 			})
-		},
-
-	stop: function() {
-		clearInterval(this.move)
-		this.setState({flux: false})
+			this.start = this.start * .9
+			setTimeout(this.forward, this.start)
 	},
 
 	backward: function() {
@@ -43,21 +56,18 @@ var TimeTravel = React.createClass({
 				year: this.state.year - 1,
 				flux: true
 			})
-		},
+		this.start = this.start * .9
+		setTimeout(this.backward, this.start)
+	},
 
-	backwardClick: function() {
-			console.log("clicked!")
-		if(!this.state.flux) {
-			this.move = setInterval(this.backward, 1000)
-		}
-	}, 
-
-	forwardClick: function() {
-			console.log("clicked!")
-		if(!this.state.flux) {
-			this.move = setInterval(this.forward, 1000)
-		}
-	}, 
+	stop: function() {
+			this.setState({
+				year: this.state.year + 1, 
+				flux: this.flux = false
+			})
+			this.start = this.start / .9
+			clearTimeout(this.stop)
+	},
 
 	render: function() {
 		return(
@@ -72,7 +82,6 @@ var TimeTravel = React.createClass({
 
 })
 React.render(<TimeTravel/>, document.getElementById("readoutContainer"))
-
 
 
 
